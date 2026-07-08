@@ -1,0 +1,1251 @@
+<title>Multifunkčný objekt Pata — investičná príležitosť | 1056 m²</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Multifunkčný objekt 1056 m² na pozemku 1674 m² s rýchlym pripojením na diaľničnú sieť (Pata). Gastro, penzión, byty, svadobný salón, showroom či fitness. 350 000 €." />
+
+<style>
+  /* ============ TOKENS — identita AksalCrown: biela / hlboká zelená / zlatá ============ */
+  :root {
+    color-scheme: light;
+    --paper:      #ffffff;
+    --mist:       #f4f7f5;
+    --line:       #e3eae5;
+    --pine:       #0f3d2e;
+    --pine-deep:  #0a2b20;
+    --pine-soft:  #eaf1ec;
+    --gold:       #b08d46;
+    --gold-soft:  #c9a45c;
+    --gold-tint:  #f7f1e4;
+    --ink:        #182521;
+    --muted:      #5b6b62;
+    --shadow-sm:  0 1px 2px rgba(15, 61, 46, .05), 0 4px 14px rgba(15, 61, 46, .06);
+    --shadow-md:  0 2px 6px rgba(15, 61, 46, .06), 0 18px 44px rgba(15, 61, 46, .10);
+    --radius:     14px;
+    --font-display: Georgia, 'Times New Roman', 'Palatino Linotype', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* čarovná palička nahrádza kurzor na presných ukazovadlách */
+  html.wand-on body, html.wand-on a, html.wand-on button, html.wand-on label,
+  html.wand-on img, html.wand-on figure, html.wand-on svg { cursor: none; }
+
+  ::selection { background: var(--gold-tint); color: var(--pine-deep); }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: var(--font-display); color: var(--pine); font-weight: 500; text-wrap: balance; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .eyebrow::before { content: ''; width: 34px; height: 1px; background: var(--gold); }
+
+  .section { padding: 104px 0; }
+  .section.alt { background: var(--mist); }
+  .section-head { max-width: 640px; margin-bottom: 56px; }
+  .section-head h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.18; margin: 14px 0 16px; }
+  .section-head p { color: var(--muted); }
+
+  /* ============ SCROLL PROGRESS ============ */
+  #progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0;
+    background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+    z-index: 200; transition: width .1s linear;
+  }
+
+  /* ============ ČAROVNÁ PALIČKA + ISKRY ============ */
+  #sparkles {
+    position: fixed; inset: 0; pointer-events: none; z-index: 9998;
+  }
+  #wand {
+    position: fixed; top: 0; left: 0; width: 46px; height: 46px;
+    pointer-events: none; z-index: 9999; opacity: 0;
+    transition: opacity .3s ease;
+    will-change: transform;
+  }
+  #wand svg { overflow: visible; }
+  #wand .star { transform-origin: 8px 8px; transition: transform .25s ease; }
+  #wand.magic .star { transform: scale(1.65) rotate(18deg); }
+  #wand.magic .glow { opacity: 1; }
+  #wand .glow { opacity: 0; transition: opacity .25s ease; }
+  body.cursor-active #wand { opacity: 1; }
+  @media (pointer: coarse) { #wand, #sparkles { display: none; } }
+
+  /* ============ NAVIGÁCIA ============ */
+  header {
+    position: fixed; inset: 0 0 auto 0; z-index: 100;
+    background: rgba(255, 255, 255, .92);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled { border-bottom-color: var(--line); box-shadow: 0 6px 24px rgba(15, 61, 46, .06); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand-mark {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--pine); color: var(--gold-soft);
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-size: 19px;
+  }
+  .brand-text { line-height: 1.25; }
+  .brand-text strong { display: block; font-family: var(--font-display); font-size: 17px; color: var(--pine); font-weight: 600; letter-spacing: .04em; }
+  .brand-text span { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+
+  .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--pine); font-size: 14.5px; font-weight: 500;
+    padding: 6px 0; position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; left: 0; bottom: 0; height: 1.5px; width: 100%;
+    background: var(--gold); transform: scaleX(0); transform-origin: left;
+    transition: transform .3s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--pine); color: #fff !important; padding: 11px 22px !important;
+    border-radius: 999px; font-size: 14px !important;
+    transition: background .3s ease, color .3s ease;
+  }
+  .nav-cta::after { display: none; }
+  .nav-cta:hover { background: var(--pine-deep); color: var(--gold-soft) !important; }
+
+  .burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .burger span { display: block; width: 24px; height: 2px; background: var(--pine); margin: 5px 0; transition: transform .3s, opacity .3s; }
+  .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ============ HERO ============ */
+  .hero { padding: 172px 0 96px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; top: -40%; right: -22%; width: 62%; aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(176,141,70,.10), rgba(15,61,46,.05) 55%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 64px; align-items: center; }
+  .hero h1 { font-size: clamp(34px, 4.6vw, 54px); line-height: 1.12; margin: 20px 0 22px; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { color: var(--muted); font-size: 18px; max-width: 54ch; margin-bottom: 36px; }
+  .hero-sub strong { color: var(--pine); font-weight: 600; }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 32px; border-radius: 999px; border: none; cursor: pointer;
+    font-family: var(--font-body); font-size: 15.5px; font-weight: 600; text-decoration: none;
+    transition: background .3s ease, color .3s ease, border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .btn-primary { background: var(--pine); color: #fff; box-shadow: 0 10px 26px rgba(15, 61, 46, .22); }
+  .btn-primary:hover { background: var(--pine-deep); color: var(--gold-soft); transform: translateY(-2px); box-shadow: 0 16px 34px rgba(15, 61, 46, .28); }
+  .btn-primary svg { transition: transform .3s ease; }
+  .btn-primary:hover svg { transform: translateX(4px); }
+  .btn-ghost { background: transparent; color: var(--pine); border: 1.5px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-figure { position: relative; }
+  .hero-figure img {
+    width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover;
+    border-radius: 20px; box-shadow: var(--shadow-md);
+    transition: transform .6s ease;
+  }
+  .hero-figure:hover img { transform: scale(1.025); }
+  .hero-figure::after {
+    content: ''; position: absolute; inset: 18px -18px -18px 18px;
+    border: 1.5px solid var(--gold-soft); border-radius: 20px; z-index: -1; opacity: .5;
+  }
+  .hero-badge {
+    position: absolute; left: 24px; bottom: 24px;
+    background: rgba(255,255,255,.94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-radius: 12px; padding: 14px 20px; box-shadow: var(--shadow-sm);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .hero-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 5px var(--gold-tint); }
+  .hero-badge strong { display: block; font-size: 14.5px; color: var(--pine); line-height: 1.3; }
+  .hero-badge span { font-size: 12.5px; color: var(--muted); }
+
+  /* ============ FAKTY V ČÍSLACH ============ */
+  .facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .fact {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 32px 28px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .fact:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .fact::before { content: ''; position: absolute; top: 0; left: 28px; width: 42px; height: 3px; background: var(--gold); border-radius: 0 0 3px 3px; }
+  .fact-num {
+    font-family: var(--font-display); font-size: clamp(28px, 3vw, 36px);
+    color: var(--pine); line-height: 1.1; font-variant-numeric: tabular-nums;
+  }
+  .fact-num small { font-size: .55em; color: var(--gold); font-family: var(--font-body); font-weight: 600; margin-left: 2px; }
+  .fact-label { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 10px 0 6px; }
+  .fact p { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+  /* ============ INTERAKTÍVNA MAPA ============ */
+  .map-panel {
+    margin-top: 56px;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+    box-shadow: var(--shadow-md); overflow: hidden;
+  }
+  .map-head { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between; padding: 26px 30px 8px; }
+  .map-head h3 { font-size: 22px; }
+  .map-head p { font-size: 13.5px; color: var(--muted); }
+  .map-dests { display: flex; flex-wrap: wrap; gap: 10px; padding: 12px 30px 4px; }
+  .dest-btn {
+    border: 1.5px solid var(--line); background: var(--paper); cursor: pointer;
+    border-radius: 999px; padding: 9px 18px;
+    font-family: var(--font-body); font-size: 13.5px; font-weight: 600; color: var(--pine);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: border-color .3s, background .3s, color .3s, transform .3s;
+  }
+  .dest-btn small { font-weight: 500; color: var(--muted); font-size: 12px; }
+  .dest-btn:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .dest-btn.active { background: var(--pine); border-color: var(--pine); color: #fff; }
+  .dest-btn.active small { color: var(--gold-soft); }
+
+  .map-stage { position: relative; padding: 8px 14px 18px; }
+  .map-stage svg { width: 100%; height: auto; display: block; }
+
+  .map-info {
+    position: absolute; right: 34px; top: 26px;
+    background: rgba(255,255,255,.95); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border: 1px solid var(--line); border-radius: 14px; padding: 14px 20px;
+    box-shadow: var(--shadow-sm); min-width: 190px;
+  }
+  .map-info .dest-name { font-family: var(--font-display); font-size: 17px; color: var(--pine); margin-bottom: 4px; }
+  .map-info .nums { display: flex; gap: 18px; }
+  .map-info .nums b { font-family: var(--font-display); font-size: 24px; color: var(--pine); font-weight: 500; font-variant-numeric: tabular-nums; }
+  .map-info .nums small { display: block; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .map-note { padding: 0 30px 24px; font-size: 12.5px; color: var(--muted); }
+
+  /* prvky v SVG mape */
+  .rd { fill: none; stroke: #d8e2db; stroke-width: 5; stroke-linecap: round; }
+  .rd-r1 { fill: none; stroke: #b9cbc0; stroke-width: 9; stroke-linecap: round; }
+  .rd-r1-mid { fill: none; stroke: #fff; stroke-width: 1.6; stroke-dasharray: 10 9; }
+  .route { fill: none; stroke: var(--gold); stroke-width: 3.5; stroke-linecap: round; stroke-dasharray: 2 9; opacity: 0; }
+  .route.on { opacity: 1; }
+  .city-dot { fill: var(--pine); }
+  .city-label { font-family: var(--font-body); font-size: 14px; font-weight: 600; fill: var(--pine); }
+  .city-sub { font-family: var(--font-body); font-size: 10px; fill: #7d8c83; letter-spacing: .08em; }
+  .city { cursor: pointer; }
+  .city:hover .city-dot { fill: var(--gold); }
+  .pata-pulse { fill: none; stroke: var(--gold); stroke-width: 2; opacity: .8; transform-origin: center; animation: pulse 2.4s ease-out infinite; }
+  .pata-pulse.p2 { animation-delay: 1.2s; }
+  @keyframes pulse { 0% { transform: scale(.4); opacity: .8; } 100% { transform: scale(2.6); opacity: 0; } }
+  .r1-label { font-family: var(--font-body); font-size: 11px; font-weight: 700; fill: #fff; }
+
+  /* ============ SCENÁRE VYUŽITIA ============ */
+  .switcher { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .switch-btn {
+    border: 1.5px solid var(--line); background: var(--paper); cursor: pointer;
+    padding: 11px 20px; border-radius: 999px;
+    font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--muted);
+    display: inline-flex; align-items: center; gap: 9px;
+    transition: background .3s ease, color .3s ease, border-color .3s, transform .3s;
+    box-shadow: var(--shadow-sm);
+  }
+  .switch-btn .tag {
+    width: 23px; height: 23px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 12px; font-family: var(--font-display);
+    background: var(--mist); color: var(--pine); transition: background .3s, color .3s;
+  }
+  .switch-btn:hover { color: var(--pine); border-color: var(--gold); transform: translateY(-2px); }
+  .switch-btn.active { background: var(--pine); color: #fff; border-color: var(--pine); }
+  .switch-btn.active .tag { background: var(--gold); color: #fff; }
+
+  .scenario { display: none; }
+  .scenario.visible { display: grid; grid-template-columns: .92fr 1.08fr; gap: 52px; align-items: start; animation: fadeUp .5s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  .scenario h3 { font-size: clamp(24px, 3vw, 32px); line-height: 1.2; margin-bottom: 16px; }
+  .scenario .scen-text > p { color: var(--muted); margin-bottom: 24px; }
+  .scenario ul { list-style: none; display: grid; gap: 13px; margin-bottom: 26px; }
+  .scenario li { display: flex; gap: 12px; align-items: flex-start; font-size: 15.5px; }
+  .scenario li svg { flex: none; margin-top: 4px; }
+  .scen-stat {
+    display: inline-flex; align-items: baseline; gap: 12px;
+    background: var(--pine-soft); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 22px;
+  }
+  .scen-stat b { font-family: var(--font-display); font-size: 30px; color: var(--pine); font-weight: 500; }
+  .scen-stat span { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+
+  .scen-media { display: grid; gap: 20px; }
+  .viz {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 12px; box-shadow: var(--shadow-sm); cursor: pointer; position: relative;
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .viz:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .viz img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
+  .viz figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 11px 4px 2px; font-size: 13px; color: var(--pine); font-weight: 600; }
+  .viz figcaption .ai-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--gold); background: var(--gold-tint); border-radius: 999px; padding: 3px 10px; white-space: nowrap;
+  }
+  .more-uses { margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .more-uses span.lead-in { font-size: 13.5px; color: var(--muted); margin-right: 4px; }
+  .chip {
+    font-size: 13px; font-weight: 600; color: var(--pine);
+    background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 7px 16px;
+    transition: border-color .3s, color .3s, transform .3s;
+  }
+  .chip:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .viz-disclaimer { margin-top: 30px; font-size: 12.5px; color: var(--muted); }
+
+  /* ============ GALÉRIA ============ */
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .frame {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 11px; box-shadow: var(--shadow-sm); cursor: pointer;
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+  .frame:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+  .frame img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; }
+  .frame figcaption { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 4px 2px; font-size: 12.5px; color: var(--muted); }
+  .frame figcaption b { color: var(--pine); font-weight: 600; }
+  .frame figcaption span { color: var(--gold); font-size: 11px; letter-spacing: .12em; }
+
+  /* ============ LIGHTBOX ============ */
+  #lightbox {
+    position: fixed; inset: 0; z-index: 300; display: none;
+    background: rgba(10, 43, 32, .88); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center; padding: 4vh 4vw;
+  }
+  #lightbox.open { display: flex; animation: lbIn .3s ease both; }
+  @keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
+  #lightbox figure { max-width: min(1100px, 92vw); width: 100%; }
+  #lightbox img {
+    width: 100%; max-height: 78vh; object-fit: contain;
+    border-radius: 12px; background: #fff; padding: 8px;
+  }
+  #lightbox figcaption { text-align: center; color: #fff; font-size: 14.5px; margin-top: 16px; }
+  .lb-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(255,255,255,.14); color: #fff; font-size: 22px;
+    display: grid; place-items: center; transition: background .3s;
+  }
+  .lb-btn:hover { background: var(--gold); }
+  .lb-prev { left: 18px; } .lb-next { right: 18px; }
+  .lb-close { position: absolute; top: 18px; right: 18px; width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer; background: rgba(255,255,255,.14); color: #fff; font-size: 20px; transition: background .3s; }
+  .lb-close:hover { background: var(--gold); }
+
+  /* ============ TECHNICKÉ PARAMETRE ============ */
+  .specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .spec {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 34px 30px; box-shadow: var(--shadow-sm);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .spec:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .spec .icon { width: 50px; height: 50px; border-radius: 12px; background: var(--gold-tint); color: var(--gold); display: grid; place-items: center; margin-bottom: 20px; }
+  .spec h3 { font-size: 20px; margin-bottom: 16px; }
+  .spec dl { display: grid; gap: 12px; }
+  .spec div.row { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px dashed var(--line); padding-bottom: 12px; }
+  .spec div.row:last-child { border-bottom: none; padding-bottom: 0; }
+  .spec dt { font-size: 13.5px; color: var(--muted); }
+  .spec dd { font-size: 13.5px; color: var(--pine); font-weight: 600; text-align: right; }
+
+  /* ============ KONTAKT / CTA ============ */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .contact-grid h2 { font-size: clamp(28px, 3.6vw, 38px); line-height: 1.2; margin: 14px 0 18px; }
+  .contact-grid .lead { color: var(--muted); margin-bottom: 28px; }
+  .contact-points { list-style: none; display: grid; gap: 14px; }
+  .contact-points li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; }
+  .contact-points svg { flex: none; margin-top: 3px; }
+
+  .form-card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 18px;
+    padding: 40px 38px; box-shadow: var(--shadow-md);
+  }
+  .form-card h3 { font-size: 21px; margin-bottom: 6px; }
+  .form-card > form > p { font-size: 14px; color: var(--muted); margin-bottom: 26px; }
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--pine); margin-bottom: 7px; }
+  .field input, .field select {
+    width: 100%; padding: 13px 16px; border-radius: 10px;
+    border: 1.5px solid var(--line); background: var(--mist);
+    font-family: var(--font-body); font-size: 15px; color: var(--ink);
+    transition: border-color .3s ease, background .3s ease, box-shadow .3s ease;
+  }
+  .field input:focus, .field select:focus {
+    outline: none; border-color: var(--gold); background: #fff;
+    box-shadow: 0 0 0 4px var(--gold-tint);
+  }
+  .btn-gold { width: 100%; justify-content: center; background: var(--pine); color: var(--gold-soft); font-size: 15px; }
+  .btn-gold:hover { background: var(--pine-deep); color: #fff; transform: translateY(-2px); }
+  .form-note { font-size: 12.5px; color: var(--muted); text-align: center; margin-top: 14px; }
+  .form-success { display: none; text-align: center; padding: 44px 10px; }
+  .form-success.visible { display: block; animation: fadeUp .5s ease both; }
+  .form-success .icon { width: 62px; height: 62px; border-radius: 50%; background: var(--pine-soft); color: var(--pine); display: grid; place-items: center; margin: 0 auto 18px; }
+  .form-success h3 { margin-bottom: 8px; }
+  .form-success p { font-size: 14.5px; color: var(--muted); }
+
+  /* ============ FOOTER ============ */
+  footer { background: var(--pine-deep); color: rgba(255,255,255,.75); padding: 64px 0 34px; }
+  .foot-grid { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .foot-brand strong { display: block; font-family: var(--font-display); font-size: 20px; color: #fff; margin-bottom: 6px; }
+  .foot-brand span { color: var(--gold-soft); font-size: 12px; letter-spacing: .18em; text-transform: uppercase; }
+  .foot-links { list-style: none; display: flex; gap: 28px; flex-wrap: wrap; }
+  .foot-links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: 14px; transition: color .3s ease; }
+  .foot-links a:hover { color: var(--gold-soft); }
+  .foot-bottom { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 26px; font-size: 13px; color: rgba(255,255,255,.45); }
+  .foot-bottom b { color: var(--gold-soft); font-weight: 600; }
+
+  /* ============ SCROLL REVEAL ============ */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    #wand, #sparkles { display: none; }
+    html.wand-on body, html.wand-on a, html.wand-on button { cursor: auto; }
+    .pata-pulse { animation: none; opacity: 0; }
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  }
+
+  /* ============ RESPONZÍVNOSŤ ============ */
+  @media (max-width: 960px) {
+    .section { padding: 76px 0; }
+    .hero { padding: 140px 0 70px; }
+    .hero-grid, .scenario.visible, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+    .facts { grid-template-columns: repeat(2, 1fr); }
+    .specs { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .hero-figure::after { display: none; }
+    .map-info { position: static; margin: 14px 16px 0; }
+
+    .nav-links {
+      position: fixed; top: 76px; left: 0; right: 0;
+      background: #fff; border-bottom: 1px solid var(--line);
+      flex-direction: column; align-items: flex-start; gap: 0;
+      padding: 12px 24px 22px; box-shadow: 0 20px 40px rgba(15,61,46,.08);
+      display: none;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 13px 0; font-size: 16px; }
+    .nav-cta { margin-top: 10px; text-align: center; }
+    .burger { display: block; }
+  }
+  @media (max-width: 560px) {
+    .facts, .gallery { grid-template-columns: 1fr; }
+    .form-card { padding: 30px 24px; }
+    .switch-btn { padding: 10px 14px; font-size: 13px; }
+  }
+</style>
+
+<div id="progress" aria-hidden="true"></div>
+
+<!-- ============ ČAROVNÁ PALIČKA ============ -->
+<canvas id="sparkles" aria-hidden="true"></canvas>
+<div id="wand" aria-hidden="true">
+  <svg width="46" height="46" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg">
+    <circle class="glow" cx="8" cy="8" r="12" fill="rgba(201,164,92,.28)"/>
+    <line x1="12" y1="12" x2="38" y2="38" stroke="#0f3d2e" stroke-width="4.6" stroke-linecap="round"/>
+    <line x1="12" y1="12" x2="21" y2="21" stroke="#b08d46" stroke-width="4.6" stroke-linecap="round"/>
+    <g class="star">
+      <path d="M8 0.8 L9.9 5.7 L15.2 8 L9.9 10.3 L8 15.2 L6.1 10.3 L0.8 8 L6.1 5.7 Z" fill="#c9a45c"/>
+      <circle cx="8" cy="8" r="2" fill="#fff"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ============ NAVIGÁCIA ============ -->
+<header id="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="#uvod">
+      <span class="brand-mark">P</span>
+      <span class="brand-text">
+        <strong>Objekt Pata</strong>
+        <span>Investičná príležitosť</span>
+      </span>
+    </a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#uvod">Úvod</a></li>
+        <li><a href="#lokalita">Lokalita</a></li>
+        <li><a href="#potencial">Investičný potenciál</a></li>
+        <li><a href="#galeria">Galéria</a></li>
+        <li><a href="#specifikacie">Technické špecifikácie</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a class="nav-cta" href="#kontakt">Dohodnúť obhliadku</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Otvoriť menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ 1 · HERO ============ -->
+<section class="hero" id="uvod">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Obec Pata · rýchle pripojenie na diaľnicu</span>
+      <h1>Investičná príležitosť: objekt s <em>neobmedzeným</em> potenciálom</h1>
+      <p class="hero-sub">
+        Multifunkčný objekt s úžitkovou plochou <strong>1 056 m²</strong> s rýchlym pripojením
+        na diaľničnú sieť. Šesť overených biznis scenárov — od <strong>gastra a penziónu</strong>
+        cez <strong>svadobný salón či showroom</strong> až po prestavbu na <strong>5 mezonetových bytov</strong>.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#potencial">
+          Prehliadať potenciál
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#kontakt">Dohodnúť obhliadku</a>
+      </div>
+    </div>
+    <figure class="hero-figure">
+      <img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-22-29.jpg" alt="Letecký pohľad na multifunkčný objekt v obci Pata" />
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span>
+          <strong>350 000 €</strong>
+          <span>1 056 m² úžitkovej plochy</span>
+        </span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 2 · STRATEGICKÁ LOKALITA + MAPA ============ -->
+<section class="section alt" id="lokalita">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Strategická lokalita</span>
+      <h2>Fakty, ktoré rozhodujú za vás</h2>
+      <p>Rovinatý pozemok s vynikajúcou viditeľnosťou z rýchlostnej cesty a silnou spádovou oblasťou okolitých firiem a obcí.</p>
+    </div>
+    <div class="facts">
+      <div class="fact reveal">
+        <div class="fact-num"><span class="count" data-count="1674">0</span><small>m²</small></div>
+        <div class="fact-label">Pozemok</div>
+        <p>Rovinatý, plne využiteľný pozemok s pohodlným prístupom aj pre zásobovanie.</p>
+      </div>
+      <div class="fact reveal">
+        <div class="fact-num"><span class="count" data-count="1056">0</span><small>m²</small></div>
+        <div class="fact-label">Úžitková plocha</div>
+        <p>Dve plnohodnotné podlažia s flexibilnou dispozíciou pre viacero prevádzok.</p>
+      </div>
+      <div class="fact reveal">
+        <div class="fact-num">R1</div>
+        <div class="fact-label">Priamo pri zjazde</div>
+        <p>Frekventovaný ťah Trnava — Nitra. Skvelá viditeľnosť a nepretržitý tok potenciálnych klientov.</p>
+      </div>
+      <div class="fact reveal">
+        <div class="fact-num"><span class="count" data-count="350000">0</span><small>€</small></div>
+        <div class="fact-label">Cena</div>
+        <p>Výnimočný pomer ceny a úžitkovej plochy — 331 € za m² v etablovanej lokalite.</p>
+      </div>
+    </div>
+
+    <!-- Interaktívna mapa -->
+    <div class="map-panel reveal">
+      <div class="map-head">
+        <div>
+          <h3>Kde sa objekt nachádza</h3>
+          <p>Kliknite na cieľ — mapa vykreslí trasu a dojazd autom.</p>
+        </div>
+      </div>
+      <div class="map-dests" id="mapDests">
+        <button class="dest-btn active" data-dest="nitra">Nitra <small>~32 km</small></button>
+        <button class="dest-btn" data-dest="trnava">Trnava <small>~26 km</small></button>
+        <button class="dest-btn" data-dest="sered">Sereď <small>~7 km</small></button>
+        <button class="dest-btn" data-dest="bratislava">Bratislava <small>~62 km</small></button>
+      </div>
+      <div class="map-stage">
+        <svg id="mapSvg" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Schematická mapa polohy objektu Pata medzi Trnavou a Nitrou pri rýchlostnej ceste R1">
+          <!-- podklad -->
+          <rect x="0" y="0" width="900" height="480" rx="14" fill="#eef4ef"/>
+          <ellipse cx="180" cy="120" rx="150" ry="80" fill="#e5efe6"/>
+          <ellipse cx="700" cy="380" rx="190" ry="100" fill="#e5efe6"/>
+          <ellipse cx="480" cy="90" rx="130" ry="60" fill="#e9f2ea"/>
+          <path d="M 60 430 Q 250 380 420 415 T 860 400" fill="none" stroke="#cfe3d6" stroke-width="10" opacity=".7"/>
+          <path d="M 500 30 Q 520 180 470 300 Q 450 370 480 460" fill="none" stroke="#c9dfef" stroke-width="7" opacity=".8"/>
+
+          <!-- vedľajšie cesty -->
+          <path class="rd" d="M 150 300 Q 240 350 330 330 Q 380 320 405 302"/>
+          <path class="rd" d="M 405 302 Q 390 380 300 440"/>
+          <path class="rd" d="M 740 260 Q 700 360 600 430"/>
+
+          <!-- R1 -->
+          <path id="roadR1" class="rd-r1" d="M 40 330 Q 210 305 330 300 Q 420 296 500 280 Q 640 252 860 250"/>
+          <path class="rd-r1-mid" d="M 40 330 Q 210 305 330 300 Q 420 296 500 280 Q 640 252 860 250"/>
+          <g>
+            <rect x="180" y="292" width="34" height="20" rx="4" fill="#0f3d2e"/>
+            <text class="r1-label" x="190" y="306">R1</text>
+            <rect x="640" y="246" width="34" height="20" rx="4" fill="#0f3d2e"/>
+            <text class="r1-label" x="650" y="260">R1</text>
+          </g>
+
+          <!-- trasy z Paty (neviditeľné, animované) -->
+          <path id="route-trnava" class="route" d="M 405 302 Q 330 300 250 305 Q 160 312 100 322"/>
+          <path id="route-nitra" class="route" d="M 405 302 Q 500 280 600 265 Q 700 253 790 251"/>
+          <path id="route-sered" class="route" d="M 405 302 Q 380 330 350 352"/>
+          <path id="route-bratislava" class="route" d="M 405 302 Q 330 300 250 305 Q 160 312 100 322 Q 70 328 42 334"/>
+
+          <!-- mestá -->
+          <g class="city" data-dest="trnava">
+            <circle class="city-dot" cx="100" cy="322" r="9"/>
+            <text class="city-label" x="80" y="352">Trnava</text>
+            <text class="city-sub" x="72" y="368">krajské mesto</text>
+          </g>
+          <g class="city" data-dest="sered">
+            <circle class="city-dot" cx="350" cy="352" r="7"/>
+            <text class="city-label" x="330" y="380">Sereď</text>
+          </g>
+          <g class="city" data-dest="nitra">
+            <circle class="city-dot" cx="790" cy="251" r="9"/>
+            <text class="city-label" x="770" y="281">Nitra</text>
+            <text class="city-sub" x="748" y="297">krajské mesto</text>
+          </g>
+          <g class="city" data-dest="bratislava">
+            <circle class="city-dot" cx="42" cy="334" r="6"/>
+            <text class="city-label" x="14" y="310">Bratislava →</text>
+          </g>
+
+          <!-- PATA -->
+          <g id="pataMarker">
+            <circle class="pata-pulse" cx="405" cy="302" r="12"/>
+            <circle class="pata-pulse p2" cx="405" cy="302" r="12"/>
+            <circle cx="405" cy="302" r="11" fill="#b08d46" stroke="#fff" stroke-width="3"/>
+            <rect x="368" y="248" width="76" height="26" rx="13" fill="#0f3d2e"/>
+            <text x="383" y="266" font-family="Georgia, serif" font-size="14" fill="#c9a45c" font-weight="600">PATA</text>
+            <line x1="405" y1="274" x2="405" y2="290" stroke="#0f3d2e" stroke-width="2"/>
+          </g>
+
+          <!-- auto -->
+          <g id="car" opacity="0">
+            <circle r="13" fill="#0f3d2e" stroke="#c9a45c" stroke-width="2.5"/>
+            <text x="-8.5" y="5" font-size="13">🚗</text>
+          </g>
+        </svg>
+        <div class="map-info" id="mapInfo">
+          <div class="dest-name" id="miName">Nitra</div>
+          <div class="nums">
+            <div><b id="miKm">0</b> <small>km autom</small></div>
+            <div><b id="miMin">0</b> <small>minút</small></div>
+          </div>
+        </div>
+      </div>
+      <p class="map-note">Schematické znázornenie. Vzdialenosti a časy sú orientačné pre jazdu autom po R1.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · POTENCIÁL VYUŽITIA ============ -->
+<section class="section" id="potencial">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Investičný potenciál</span>
+      <h2>Šesť biznis smerov. Jedna adresa.</h2>
+      <p>Objekt je pripravený na okamžité využitie aj na development. Vyberte si scenár — pri každom uvidíte AI vizualizáciu vytvorenú z reálnych fotografií objektu.</p>
+    </div>
+
+    <div class="switcher reveal" role="tablist" aria-label="Scenáre využitia">
+      <button class="switch-btn active" role="tab" aria-selected="true" aria-controls="s-gastro" data-target="s-gastro"><span class="tag">A</span> Gastro &amp; Wellness</button>
+      <button class="switch-btn" role="tab" aria-selected="false" aria-controls="s-penzion" data-target="s-penzion"><span class="tag">B</span> Penzión</button>
+      <button class="switch-btn" role="tab" aria-selected="false" aria-controls="s-byty" data-target="s-byty"><span class="tag">C</span> Mezonetové byty</button>
+      <button class="switch-btn" role="tab" aria-selected="false" aria-controls="s-svadby" data-target="s-svadby"><span class="tag">D</span> Svadobný salón</button>
+      <button class="switch-btn" role="tab" aria-selected="false" aria-controls="s-showroom" data-target="s-showroom"><span class="tag">E</span> Showroom</button>
+      <button class="switch-btn" role="tab" aria-selected="false" aria-controls="s-skolka" data-target="s-skolka"><span class="tag">F</span> Škôlka / Fitness</button>
+    </div>
+
+    <div class="scenario visible" id="s-gastro" role="tabpanel">
+      <div class="scen-text">
+        <h3>Gastro &amp; Wellness — otvorte prevádzku takmer okamžite</h3>
+        <p>Prízemie tvorí bývalá plne vybavená reštaurácia so skvelým technickým zázemím. Priestor je pripravený na rýchly reštart gastro prevádzky alebo rozšírenie o wellness zónu.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Plne vybavená kuchyňa a zázemie bývalej reštaurácie</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Silná spádová oblasť — vodiči z R1 aj okolité firmy</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Priestorová rezerva pre wellness či letnú terasu</li>
+        </ul>
+        <div class="scen-stat"><b>Prízemie</b><span>Reštaurácia so zázemím</span></div>
+      </div>
+      <div class="scen-media">
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-gastro-interier.jpg" alt="AI vizualizácia reštaurácie v hlavnej hale s kamenným barom" loading="lazy" /><figcaption>Hlavná hala s kamenným barom <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-gastro-terasa.jpg" alt="AI vizualizácia letnej terasy pred objektom" loading="lazy" /><figcaption>Letná terasa pred objektom <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+      </div>
+    </div>
+
+    <div class="scenario" id="s-penzion" role="tabpanel" hidden>
+      <div class="scen-text">
+        <h3>Penzión &amp; Ubytovanie — nonstop dopyt priamo z R1</h3>
+        <p>Podkrovie ponúka 5 samostatných miestností a kanceláriu — pripravený základ pre penzión na strategickom ťahu Trnava — Nitra s celoročným dopytom.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>5 samostatných miestností v podkroví + kancelária</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ubytovanie pre vodičov, firemných hostí aj turistov</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Synergia s gastro prevádzkou na prízemí</li>
+        </ul>
+        <div class="scen-stat"><b>5 + 1</b><span>Izieb &amp; kancelária</span></div>
+      </div>
+      <div class="scen-media">
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-penzion-izba.jpg" alt="AI vizualizácia hosťovskej izby v podkroví" loading="lazy" /><figcaption>Hosťovská izba v podkroví <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-penzion-recepcia.jpg" alt="AI vizualizácia recepcie penziónu" loading="lazy" /><figcaption>Recepcia penziónu <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+      </div>
+    </div>
+
+    <div class="scenario" id="s-byty" role="tabpanel" hidden>
+      <div class="scen-text">
+        <h3>Mezonetové byty — rezidenčný development</h3>
+        <p>Veľkorysá dispozícia s dvoma podlažiami a podkrovím umožňuje prestavbu objektu na 5 štýlových mezonetových bytov — bývanie v dostupnosti Trnavy aj Nitry je dlhodobo žiadané.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dispozícia vhodná na 5 mezonetových bytov</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Rastúci dopyt po bývaní v okolí Serede a Nitry</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Predajná hodnota po prestavbe prevyšuje vstupnú investíciu</li>
+        </ul>
+        <div class="scen-stat"><b>5×</b><span>Mezonetový byt</span></div>
+      </div>
+      <div class="scen-media">
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-byty-obyvacka.jpg" alt="AI vizualizácia obývacej časti mezonetového bytu" loading="lazy" /><figcaption>Obývacia časť mezonetu s galériou <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-byty-spalna.jpg" alt="AI vizualizácia podkrovnej spálne mezonetu" loading="lazy" /><figcaption>Podkrovná spálňa <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+      </div>
+    </div>
+
+    <div class="scenario" id="s-svadby" role="tabpanel" hidden>
+      <div class="scen-text">
+        <h3>Svadobný salón &amp; Eventy — priestor, ktorý predáva emóciu</h3>
+        <p>Priestranná hala so schodiskom a galériou s balkónmi je ako stvorená pre svadby, oslavy a firemné akcie. Dojazd do 30 minút z dvoch krajských miest znamená široký okruh klientely.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Reprezentatívna hala so schodiskom a galériou</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Gastro zázemie pre catering priamo v objekte</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ubytovanie hostí v podkroví — event „pod jednou strechou“</li>
+        </ul>
+        <div class="scen-stat"><b>2 v 1</b><span>Sála + ubytovanie</span></div>
+      </div>
+      <div class="scen-media">
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-svadba-salon.jpg" alt="AI vizualizácia svadobného salóna so schodiskom" loading="lazy" /><figcaption>Svadobný salón so schodiskom <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-svadba-hostina.jpg" alt="AI vizualizácia svadobnej hostiny v hale s balkónmi" loading="lazy" /><figcaption>Hostina v hale s balkónmi <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+      </div>
+    </div>
+
+    <div class="scenario" id="s-showroom" role="tabpanel" hidden>
+      <div class="scen-text">
+        <h3>Showroom &amp; Obchodný priestor — vitrína pri R1</h3>
+        <p>Tisíce áut denne na ťahu Trnava — Nitra robia z objektu prirodzený showroom: nábytok, kuchyne, autá, technika. Veľkorysé prízemie unesie expozíciu aj klientske centrum.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Vynikajúca viditeľnosť z rýchlostnej cesty</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Parkovanie a zásobovanie priamo na pozemku 1 674 m²</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kancelárie a sklad na poschodí</li>
+        </ul>
+        <div class="scen-stat"><b>1 056 m²</b><span>Expozícia + zázemie</span></div>
+      </div>
+      <div class="scen-media">
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-showroom-interier.jpg" alt="AI vizualizácia interiéru showroomu" loading="lazy" /><figcaption>Expozícia na prízemí <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-showroom-exterier.jpg" alt="AI vizualizácia exteriéru showroomu s presklením" loading="lazy" /><figcaption>Fasáda s presklením <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+      </div>
+    </div>
+
+    <div class="scenario" id="s-skolka" role="tabpanel" hidden>
+      <div class="scen-text">
+        <h3>Škôlka alebo Fitness — služby, ktoré v okolí chýbajú</h3>
+        <p>Rastúce obce v okolí Serede potrebujú škôlky, fitness centrá aj ambulancie. Prízemie s veľkými miestnosťami a rovinatý pozemok s priestorom pre ihrisko či parkovisko tomu vychádzajú v ústrety.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Veľké svetlé miestnosti s oknami do zelene</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pozemok pre detské ihrisko alebo vonkajšiu fit zónu</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Podlahové kúrenie — komfort pre deti aj športovcov</li>
+        </ul>
+        <div class="scen-stat"><b>2 smery</b><span>Vzdelávanie / šport</span></div>
+      </div>
+      <div class="scen-media">
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-skolka.jpg" alt="AI vizualizácia herne škôlky" loading="lazy" /><figcaption>Herňa škôlky na prízemí <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+        <figure class="viz" data-lb="viz"><img src="img-web/viz-fitness.jpg" alt="AI vizualizácia fitness centra" loading="lazy" /><figcaption>Fitness zóna <span class="ai-tag">AI vizualizácia</span></figcaption></figure>
+      </div>
+    </div>
+
+    <div class="more-uses reveal">
+      <span class="lead-in">Ďalšie overené koncepty:</span>
+      <span class="chip">Coworking</span>
+      <span class="chip">Ambulancie</span>
+      <span class="chip">Sídlo firmy</span>
+      <span class="chip">Vzdelávacie centrum</span>
+      <span class="chip">Autoservis s klientskou zónou</span>
+    </div>
+    <p class="viz-disclaimer">Vizualizácie sú ilustračné — vytvorené pomocou AI na základe reálnych fotografií objektu. Nezobrazujú skutočný stav nehnuteľnosti.</p>
+  </div>
+</section>
+
+<!-- ============ 4 · GALÉRIA ============ -->
+<section class="section alt" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Galéria</span>
+      <h2>Skutočný stav objektu</h2>
+      <p>Letecké zábery aj aktuálne fotografie interiéru. Kliknutím na fotografiu ju zobrazíte v plnej veľkosti.</p>
+    </div>
+    <div class="gallery">
+      <figure class="frame reveal" data-lb="foto"><img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-22-08-600x338.jpg" alt="Letecký pohľad na objekt a pozemok" loading="lazy" /><figcaption><b>Objekt a pozemok</b><span>01</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-22-48-600x338.jpg" alt="Pohľad na areál nehnuteľnosti zhora" loading="lazy" /><figcaption><b>Areál z výšky</b><span>02</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-23-19-600x338.jpg" alt="Poloha objektu pri rýchlostnej ceste" loading="lazy" /><figcaption><b>Poloha pri R1</b><span>03</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-23-36-600x338.jpg" alt="Širšie okolie nehnuteľnosti a obec Pata" loading="lazy" /><figcaption><b>Obec Pata</b><span>04</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-fasada.jpg" alt="Fasáda a hlavný vchod objektu" loading="lazy" /><figcaption><b>Fasáda a vchod</b><span>05</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-hala-bar.jpg" alt="Hlavná hala s kamenným barom" loading="lazy" /><figcaption><b>Hala s barom</b><span>06</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-hala-balkony.jpg" alt="Hala s galériou a balkónmi" loading="lazy" /><figcaption><b>Hala s balkónmi</b><span>07</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-podkrovie.jpg" alt="Podkrovie s dreveným krovom" loading="lazy" /><figcaption><b>Podkrovie</b><span>08</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIGHTBOX ============ -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Náhľad fotografie">
+  <figure>
+    <img id="lbImg" src="" alt="" />
+    <figcaption id="lbCap"></figcaption>
+  </figure>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Predchádzajúca">‹</button>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Ďalšia">›</button>
+  <button class="lb-close" id="lbClose" aria-label="Zavrieť">✕</button>
+</div>
+
+<!-- ============ 5 · TECHNICKÉ PARAMETRE ============ -->
+<section class="section" id="specifikacie">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Technické špecifikácie</span>
+      <h2>Parametre pre investorov</h2>
+      <p>Kvalitná stavebná podstata a kompletné siete — objekt je pripravený na okamžitú prevádzku aj prestavbu.</p>
+    </div>
+    <div class="specs">
+      <div class="spec reveal">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4"/><rect x="5" y="12" width="6" height="4"/><rect x="13" y="12" width="6" height="4"/><rect x="3" y="16" width="18" height="4"/><path d="M8 8V4h8v4"/></svg>
+        </div>
+        <h3>Konštrukcia</h3>
+        <dl>
+          <div class="row"><dt>Nosné murivo</dt><dd>Pórobetón</dd></div>
+          <div class="row"><dt>Priečky</dt><dd>Tehlové</dd></div>
+          <div class="row"><dt>Základy</dt><dd>Betónové</dd></div>
+          <div class="row"><dt>Podlažia</dt><dd>2 + podkrovie</dd></div>
+        </dl>
+      </div>
+      <div class="spec reveal">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2.5 3 5 5.8 5 9a5 5 0 0 1-10 0c0-3.2 2.5-6 5-9Z"/><path d="M12 17v4"/><path d="M8 21h8"/></svg>
+        </div>
+        <h3>Kúrenie a siete</h3>
+        <dl>
+          <div class="row"><dt>Vykurovanie</dt><dd>Podlahové + radiátory</dd></div>
+          <div class="row"><dt>Elektrina &amp; plyn</dt><dd>Zavedené</dd></div>
+          <div class="row"><dt>Voda</dt><dd>Vlastná studňa</dd></div>
+          <div class="row"><dt>Odpad</dt><dd>Žumpa 16 m³</dd></div>
+        </dl>
+      </div>
+      <div class="spec reveal">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>
+        </div>
+        <h3>Okná a strecha</h3>
+        <dl>
+          <div class="row"><dt>Okná</dt><dd>Drevené eurookná</dd></div>
+          <div class="row"><dt>Tienenie</dt><dd>Žalúzie</dd></div>
+          <div class="row"><dt>Krov</dt><dd>Sedlový, drevený</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6 · KONTAKT / CTA ============ -->
+<section class="section alt" id="kontakt">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Ďalší krok</span>
+      <h2>Vyžiadajte si investičný prospekt</h2>
+      <p class="lead">Zanechajte nám kontakt a do 24 hodín vám pošleme kompletné podklady — fotodokumentáciu, technické parametre a návrh termínov obhliadky.</p>
+      <ul class="contact-points">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kompletný investičný prospekt v PDF</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fotodokumentácia a technické parametre objektu</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Osobná obhliadka v termíne podľa vás</li>
+      </ul>
+    </div>
+    <div class="form-card reveal">
+      <form id="leadForm" novalidate>
+        <h3>Nezáväzný záujem</h3>
+        <p>Podklady posielame iba serióznym záujemcom. Vaše údaje nezdieľame s tretími stranami.</p>
+        <div class="field">
+          <label for="f-name">Meno a priezvisko</label>
+          <input id="f-name" name="name" type="text" placeholder="Ing. Peter Novák" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail</label>
+          <input id="f-email" name="email" type="email" placeholder="peter@firma.sk" required autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="f-interest">Mám záujem o</label>
+          <select id="f-interest" name="interest">
+            <option>Investičný prospekt</option>
+            <option>Osobnú obhliadku objektu</option>
+            <option>Konzultáciu o možnostiach využitia</option>
+          </select>
+        </div>
+        <button class="btn btn-gold" type="submit">Vyžiadať investičný prospekt</button>
+        <p class="form-note">Odoslaním súhlasíte so spracovaním údajov na účely komunikácie o tejto ponuke.</p>
+      </form>
+      <div class="form-success" id="formSuccess" role="status">
+        <div class="icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3>Ďakujeme za záujem</h3>
+        <p>Vaša požiadavka bola prijatá. Investičný prospekt vám pošleme na uvedený e-mail do 24 hodín.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <strong>Objekt Pata</strong>
+        <span>Investičná príležitosť</span>
+      </div>
+      <ul class="foot-links">
+        <li><a href="#uvod">Úvod</a></li>
+        <li><a href="#lokalita">Lokalita</a></li>
+        <li><a href="#potencial">Investičný potenciál</a></li>
+        <li><a href="#galeria">Galéria</a></li>
+        <li><a href="#specifikacie">Technické špecifikácie</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Objekt Pata — multifunkčná nehnuteľnosť pri R1. Všetky práva vyhradené.</span>
+      <span>Cena: <b>350 000 €</b> · Pozemok 1 674 m² · Úžitková plocha 1 056 m²</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ============ ČAROVNÁ PALIČKA — kurzor so zlatými iskrami ============ */
+  (function () {
+    var fine = window.matchMedia('(pointer: fine)').matches;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine || reduced) return;
+    document.documentElement.classList.add('wand-on');
+
+    var wand = document.getElementById('wand');
+    var canvas = document.getElementById('sparkles');
+    var ctx = canvas.getContext('2d');
+    var mx = innerWidth / 2, my = innerHeight / 2;
+    var wx = mx, wy = my;
+    var magic = false;
+    var particles = [];
+    var COLORS = ['#c9a45c', '#b08d46', '#e8d5a8', '#0f3d2e', '#ffffff'];
+
+    function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+    resize();
+    addEventListener('resize', resize);
+
+    function spawn(n, burst) {
+      for (var i = 0; i < n; i++) {
+        var a = Math.random() * Math.PI * 2;
+        var sp = burst ? (1.2 + Math.random() * 2.6) : (0.2 + Math.random() * 0.9);
+        particles.push({
+          x: mx, y: my,
+          vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 0.35,
+          life: 1, decay: burst ? 0.016 : 0.028,
+          size: 1.5 + Math.random() * (burst ? 3.4 : 2.4),
+          color: COLORS[(Math.random() * COLORS.length) | 0],
+          star: Math.random() < 0.35, rot: Math.random() * Math.PI
+        });
+      }
+      if (particles.length > 260) particles.splice(0, particles.length - 260);
+    }
+
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY;
+      document.body.classList.add('cursor-active');
+      spawn(magic ? 3 : 1, false);
+    });
+    document.addEventListener('mouseleave', function () {
+      document.body.classList.remove('cursor-active');
+    });
+    document.addEventListener('mousedown', function () { spawn(16, true); });
+
+    var HOVERABLE = 'a, button, input, select, textarea, [role="tab"], label, .frame, .viz, .city, .chip';
+    document.addEventListener('mouseover', function (e) {
+      magic = !!e.target.closest(HOVERABLE);
+      wand.classList.toggle('magic', magic);
+    });
+
+    function drawStar(p) {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.beginPath();
+      for (var i = 0; i < 4; i++) {
+        var outer = p.size * 1.9, inner = p.size * 0.55;
+        var a1 = (Math.PI / 2) * i, a2 = a1 + Math.PI / 4;
+        ctx.lineTo(Math.cos(a1) * outer, Math.sin(a1) * outer);
+        ctx.lineTo(Math.cos(a2) * inner, Math.sin(a2) * inner);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function frame() {
+      // palička nasleduje myš s jemným oneskorením, hviezda = špička na kurzore
+      wx += (mx - wx) * 0.3;
+      wy += (my - wy) * 0.3;
+      wand.style.transform = 'translate(' + (wx - 8) + 'px,' + (wy - 8) + 'px)';
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = particles.length - 1; i >= 0; i--) {
+        var p = particles[i];
+        p.x += p.vx; p.y += p.vy; p.vy += 0.015;
+        p.life -= p.decay; p.rot += 0.05;
+        if (p.life <= 0) { particles.splice(i, 1); continue; }
+        ctx.globalAlpha = Math.max(p.life, 0);
+        ctx.fillStyle = p.color;
+        if (p.star) { drawStar(p); }
+        else {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  })();
+
+  /* ============ SCROLL PROGRESS + NAVIGÁCIA ============ */
+  (function () {
+    var header = document.getElementById('topbar');
+    var progress = document.getElementById('progress');
+    var burger = document.getElementById('burger');
+    var links = document.getElementById('navLinks');
+
+    function onScroll() {
+      header.classList.toggle('scrolled', scrollY > 10);
+      var h = document.documentElement.scrollHeight - innerHeight;
+      progress.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + '%';
+    }
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    burger.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+    });
+    links.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        links.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
+  /* ============ POČÍTADLÁ FAKTOV ============ */
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var counters = document.querySelectorAll('.count');
+    function fmt(n) { return n.toLocaleString('sk-SK').replace(/,/g, ' '); }
+    if (reduced || !('IntersectionObserver' in window)) {
+      counters.forEach(function (el) { el.textContent = fmt(+el.dataset.count); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        io.unobserve(entry.target);
+        var el = entry.target, target = +el.dataset.count, t0 = null;
+        function step(t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / 1400, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = fmt(Math.round(target * eased));
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(function (el) { io.observe(el); });
+  })();
+
+  /* ============ INTERAKTÍVNA MAPA ============ */
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var DESTS = {
+      nitra:      { km: 32, min: 25, name: 'Nitra' },
+      trnava:     { km: 26, min: 20, name: 'Trnava' },
+      sered:      { km: 7,  min: 8,  name: 'Sereď' },
+      bratislava: { km: 62, min: 40, name: 'Bratislava' }
+    };
+    var car = document.getElementById('car');
+    var miName = document.getElementById('miName');
+    var miKm = document.getElementById('miKm');
+    var miMin = document.getElementById('miMin');
+    var buttons = document.querySelectorAll('.dest-btn');
+    var raf = null;
+
+    function activate(key, animate) {
+      var d = DESTS[key];
+      var route = document.getElementById('route-' + key);
+      if (!d || !route) return;
+
+      buttons.forEach(function (b) { b.classList.toggle('active', b.dataset.dest === key); });
+      document.querySelectorAll('.route').forEach(function (r) { r.classList.remove('on'); r.style.strokeDashoffset = ''; r.style.strokeDasharray = ''; });
+      if (raf) cancelAnimationFrame(raf);
+
+      miName.textContent = d.name;
+      route.classList.add('on');
+      var L = route.getTotalLength();
+
+      if (!animate || reduced) {
+        car.setAttribute('opacity', '0');
+        miKm.textContent = d.km;
+        miMin.textContent = d.min;
+        return;
+      }
+
+      route.style.strokeDasharray = L;
+      route.style.strokeDashoffset = L;
+      car.setAttribute('opacity', '1');
+      var t0 = null, DUR = 2100;
+      function step(t) {
+        if (!t0) t0 = t;
+        var p = Math.min((t - t0) / DUR, 1);
+        var eased = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        var pt = route.getPointAtLength(L * eased);
+        car.setAttribute('transform', 'translate(' + pt.x + ',' + pt.y + ')');
+        route.style.strokeDashoffset = L * (1 - eased);
+        miKm.textContent = Math.round(d.km * eased);
+        miMin.textContent = Math.round(d.min * eased);
+        if (p < 1) { raf = requestAnimationFrame(step); }
+        else { setTimeout(function () { car.setAttribute('opacity', '0'); }, 900); }
+      }
+      raf = requestAnimationFrame(step);
+    }
+
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () { activate(b.dataset.dest, true); });
+    });
+    document.querySelectorAll('.city').forEach(function (c) {
+      c.addEventListener('click', function () { activate(c.dataset.dest, true); });
+    });
+
+    // spusti Nitru, keď mapa vojde do záberu
+    var panel = document.querySelector('.map-panel');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { activate('nitra', true); io.disconnect(); }
+      }, { threshold: 0.4 });
+      io.observe(panel);
+    } else {
+      activate('nitra', false);
+    }
+  })();
+
+  /* ============ PREPÍNAČ SCENÁROV ============ */
+  (function () {
+    var buttons = document.querySelectorAll('.switch-btn');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        buttons.forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        document.querySelectorAll('.scenario').forEach(function (p) {
+          var active = p.id === btn.dataset.target;
+          p.classList.toggle('visible', active);
+          p.hidden = !active;
+        });
+      });
+    });
+  })();
+
+  /* ============ LIGHTBOX (galéria + vizualizácie) ============ */
+  (function () {
+    var lb = document.getElementById('lightbox');
+    var lbImg = document.getElementById('lbImg');
+    var lbCap = document.getElementById('lbCap');
+    var items = [], idx = 0;
+
+    function collect() {
+      items = Array.prototype.slice.call(document.querySelectorAll('[data-lb]'))
+        .filter(function (f) { return f.offsetParent !== null || f.closest('.scenario'); });
+    }
+    function show(i) {
+      collect();
+      idx = (i + items.length) % items.length;
+      var f = items[idx];
+      var img = f.querySelector('img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lbCap.textContent = f.querySelector('figcaption') ? f.querySelector('figcaption').textContent.trim() : '';
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('click', function (e) {
+      var f = e.target.closest('[data-lb]');
+      if (f) { collect(); show(items.indexOf(f)); }
+    });
+    document.getElementById('lbClose').addEventListener('click', close);
+    document.getElementById('lbPrev').addEventListener('click', function (e) { e.stopPropagation(); show(idx - 1); });
+    document.getElementById('lbNext').addEventListener('click', function (e) { e.stopPropagation(); show(idx + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(idx - 1);
+      if (e.key === 'ArrowRight') show(idx + 1);
+    });
+  })();
+
+  /* ============ SCROLL REVEAL ============ */
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if (reduced || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+
+  /* ============ FORMULÁR ============ */
+  (function () {
+    var form = document.getElementById('leadForm');
+    var success = document.getElementById('formSuccess');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      form.style.display = 'none';
+      success.classList.add('visible');
+    });
+  })();
+</script>

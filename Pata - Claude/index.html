@@ -93,7 +93,7 @@
     transition: border-color .3s ease, box-shadow .3s ease;
   }
   header.scrolled { border-bottom-color: var(--line); box-shadow: 0 6px 24px rgba(15, 61, 46, .06); }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .nav { display: flex; align-items: center; gap: 8px; height: 76px; }
   .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .brand-mark {
     width: 40px; height: 40px; border-radius: 10px;
@@ -105,10 +105,10 @@
   .brand-text strong { display: block; font-family: var(--font-display); font-size: 17px; color: var(--pine); font-weight: 600; letter-spacing: .04em; }
   .brand-text span { font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
 
-  .nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+  .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
   .nav-links a {
     text-decoration: none; color: var(--pine); font-size: 14.5px; font-weight: 500;
-    padding: 6px 0; position: relative;
+    padding: 6px 0; position: relative; white-space: nowrap;
   }
   .nav-links a::after {
     content: ''; position: absolute; left: 0; bottom: 0; height: 1.5px; width: 100%;
@@ -125,6 +125,15 @@
   .nav-cta::after { display: none; }
   .nav-cta:hover { background: var(--pine-deep); color: var(--gold-soft) !important; }
 
+  .lang-btn {
+    background: transparent; border: 1.5px solid var(--line); color: var(--pine);
+    border-radius: 999px; padding: 8px 15px; margin-left: 18px; cursor: pointer;
+    font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: .08em;
+    transition: border-color .3s ease, color .3s ease, background .3s ease;
+  }
+  .lang-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .nav .brand { margin-right: auto; }
+
   .burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
   .burger span { display: block; width: 24px; height: 2px; background: var(--pine); margin: 5px 0; transition: transform .3s, opacity .3s; }
   .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -136,13 +145,30 @@
     position: relative; min-height: 100svh; display: flex; align-items: center;
     padding: 150px 0 130px; overflow: hidden; color: #fff;
   }
-  .hero-bg { position: absolute; inset: -8% 0; z-index: -2; will-change: transform; }
+  .hero-bg {
+    position: absolute; inset: -8% 0; z-index: -2; will-change: transform, opacity, filter;
+    opacity: 0; transform: scale(1.06);
+    filter: blur(24px) brightness(.6) saturate(1.15);
+    transition: opacity 1.3s ease, filter 1.7s ease, transform 2s cubic-bezier(.19,.72,.22,1);
+  }
+  .hero-bg.loaded {
+    opacity: 1; transform: scale(1);
+    filter: blur(0) brightness(1) saturate(1);
+  }
   .hero-bg img {
     width: 100%; height: 100%; object-fit: cover;
     animation: kenburns 28s ease-in-out infinite alternate;
     will-change: transform;
   }
   @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.12); } }
+  /* jemný nábeh textu v hero */
+  .hero-content > * { animation: heroIn 1s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: .15s; }
+  .hero-content > *:nth-child(2) { animation-delay: .28s; }
+  .hero-content > *:nth-child(3) { animation-delay: .41s; }
+  .hero-content > *:nth-child(4) { animation-delay: .54s; }
+  .hero-content > *:nth-child(5) { animation-delay: .67s; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
   .hero::after {
     content: ''; position: absolute; inset: 0; z-index: -1;
     background: linear-gradient(105deg, rgba(10,43,32,.90) 0%, rgba(10,43,32,.74) 38%, rgba(10,43,32,.40) 72%, rgba(10,43,32,.58) 100%);
@@ -446,19 +472,14 @@
     #wand, #sparkles { display: none; }
     html.wand-on body, html.wand-on a, html.wand-on button { cursor: auto; }
     .pata-pulse { animation: none; opacity: 0; }
+    .hero-bg { opacity: 1; transform: none; filter: none; transition: none; }
+    .hero-content > * { animation: none; }
     *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   }
 
   /* ============ RESPONZÍVNOSŤ ============ */
-  @media (max-width: 960px) {
-    .section { padding: 76px 0; }
-    .hero { min-height: 92svh; padding: 130px 0 110px; }
-    .scenario.visible, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
-    .facts { grid-template-columns: repeat(2, 1fr); }
-    .specs { grid-template-columns: 1fr; }
-    .gallery { grid-template-columns: repeat(2, 1fr); }
-    .map-info { position: static; margin: 14px 16px 0; }
-
+  /* navigácia → hamburger skôr, nech sa dlhé odkazy nelámu */
+  @media (max-width: 1040px) {
     .nav-links {
       position: fixed; top: 76px; left: 0; right: 0;
       background: #fff; border-bottom: 1px solid var(--line);
@@ -468,9 +489,18 @@
     }
     .nav-links.open { display: flex; }
     .nav-links li { width: 100%; }
-    .nav-links a { display: block; padding: 13px 0; font-size: 16px; }
+    .nav-links a { display: block; padding: 13px 0; font-size: 16px; white-space: normal; }
     .nav-cta { margin-top: 10px; text-align: center; }
     .burger { display: block; }
+  }
+  @media (max-width: 960px) {
+    .section { padding: 76px 0; }
+    .hero { min-height: 92svh; padding: 130px 0 110px; }
+    .scenario.visible, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+    .facts { grid-template-columns: repeat(2, 1fr); }
+    .specs { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .map-info { position: static; margin: 14px 16px 0; }
   }
   @media (max-width: 560px) {
     .facts, .gallery { grid-template-columns: 1fr; }
@@ -509,13 +539,14 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#uvod">Úvod</a></li>
         <li><a href="#lokalita">Lokalita</a></li>
-        <li><a href="#potencial">Investičný potenciál</a></li>
+        <li><a href="#potencial">Potenciál</a></li>
         <li><a href="#galeria">Galéria</a></li>
-        <li><a href="#specifikacie">Technické špecifikácie</a></li>
+        <li><a href="#specifikacie">Špecifikácie</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
         <li><a class="nav-cta" href="#kontakt">Dohodnúť obhliadku</a></li>
       </ul>
     </nav>
+    <button class="lang-btn" id="langToggle" type="button" aria-label="Switch language / Prepnúť jazyk">EN</button>
     <button class="burger" id="burger" aria-label="Otvoriť menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -525,7 +556,7 @@
 <!-- ============ 1 · HERO ============ -->
 <section class="hero" id="uvod">
   <div class="hero-bg" id="heroBg" aria-hidden="true">
-    <img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-22-29.jpg" alt="" />
+    <img src="img-web/hero.jpg" alt="" />
   </div>
   <div class="wrap">
     <div class="hero-content">
@@ -897,21 +928,19 @@
       <p>Letecké zábery aj aktuálne fotografie interiéru. Kliknutím na fotografiu ju zobrazíte v plnej veľkosti.</p>
     </div>
     <div class="gallery">
-      <figure class="frame reveal" data-lb="foto"><img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-22-08-600x338.jpg" alt="Letecký pohľad na objekt a pozemok" loading="lazy" /><figcaption><b>Objekt a pozemok</b><span>01</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-22-48-600x338.jpg" alt="Objekt a pozemok z výšky" loading="lazy" /><figcaption><b>Objekt a pozemok</b><span>02</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-23-19-600x338.jpg" alt="Objekt a pozemok pri rýchlostnej ceste" loading="lazy" /><figcaption><b>Objekt a pozemok</b><span>03</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="https://aksalcrown.com/wp-content/uploads/2023/02/photo-16-10-2024-16-23-36-600x338.jpg" alt="Objekt a pozemok — širšie okolie" loading="lazy" /><figcaption><b>Objekt a pozemok</b><span>04</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-fasada.jpg" alt="Predný vchod objektu" loading="lazy" /><figcaption><b>Predný vchod</b><span>05</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-hala-bar.jpg" alt="Hlavná hala s kamenným barom" loading="lazy" /><figcaption><b>Hala s barom</b><span>06</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-hala-balkony.jpg" alt="Hala s galériou a balkónmi" loading="lazy" /><figcaption><b>Hala s balkónmi</b><span>07</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-podkrovie.jpg" alt="Rozostavané krídlo — podkrovie" loading="lazy" /><figcaption><b>Rozostavané krídlo</b><span>08</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-ulica.jpg" alt="Pohľad na objekt z dvora" loading="lazy" /><figcaption><b>Pohľad z dvora</b><span>09</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-schodisko.jpg" alt="Schodisko v hale s otvorenou galériou" loading="lazy" /><figcaption><b>Schodisko a galéria</b><span>10</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-hlavna-miestnost.jpg" alt="Vchod do objektu" loading="lazy" /><figcaption><b>Vchod</b><span>11</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-kuchyna.jpg" alt="Priestranná kuchyňa so skladovými priestormi" loading="lazy" /><figcaption><b>Kuchyňa</b><span>12</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-predsienka.jpg" alt="Predsieň objektu" loading="lazy" /><figcaption><b>Predsieň</b><span>13</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-zadna-miestnost.jpg" alt="Zadná miestnosť" loading="lazy" /><figcaption><b>Zadná miestnosť</b><span>14</span></figcaption></figure>
-      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-krido-schodisko.jpg" alt="Rozostavané zadné krídlo — schodisko" loading="lazy" /><figcaption><b>Rozostavané krídlo</b><span>15</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/gal-01.jpg" alt="Letecký pohľad na objekt a pozemok" loading="lazy" /><figcaption><b>Objekt a pozemok</b><span>01</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/gal-02.jpg" alt="Objekt a pozemok z výšky" loading="lazy" /><figcaption><b>Objekt a pozemok</b><span>02</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-fasada.jpg" alt="Predný vchod objektu" loading="lazy" /><figcaption><b>Predný vchod</b><span>03</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-hala-bar.jpg" alt="Hlavná hala s kamenným barom" loading="lazy" /><figcaption><b>Hala s barom</b><span>04</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-hala-balkony.jpg" alt="Hala s galériou a balkónmi" loading="lazy" /><figcaption><b>Hala s balkónmi</b><span>05</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-podkrovie.jpg" alt="Rozostavané krídlo — podkrovie" loading="lazy" /><figcaption><b>Rozostavané krídlo</b><span>06</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-ulica.jpg" alt="Pohľad na objekt z dvora" loading="lazy" /><figcaption><b>Pohľad z dvora</b><span>07</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-schodisko.jpg" alt="Schodisko v hale s otvorenou galériou" loading="lazy" /><figcaption><b>Schodisko a galéria</b><span>08</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-hlavna-miestnost.jpg" alt="Vchod do objektu" loading="lazy" /><figcaption><b>Vchod</b><span>09</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-kuchyna.jpg" alt="Priestranná kuchyňa so skladovými priestormi" loading="lazy" /><figcaption><b>Kuchyňa</b><span>10</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-predsienka.jpg" alt="Predsieň objektu" loading="lazy" /><figcaption><b>Predsieň</b><span>11</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-zadna-miestnost.jpg" alt="Zadná miestnosť" loading="lazy" /><figcaption><b>Zadná miestnosť</b><span>12</span></figcaption></figure>
+      <figure class="frame reveal" data-lb="foto"><img src="img-web/foto-krido-schodisko.jpg" alt="Rozostavané zadné krídlo — schodisko" loading="lazy" /><figcaption><b>Rozostavané krídlo</b><span>13</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -1066,6 +1095,17 @@
 </footer>
 
 <script>
+  /* ============ NAČÍTANIE HERO FOTKY — blur-up reveal ============ */
+  (function () {
+    var bg = document.getElementById('heroBg');
+    if (!bg) return;
+    var img = bg.querySelector('img');
+    function reveal() { bg.classList.add('loaded'); }
+    if (img && img.complete && img.naturalWidth) reveal();
+    else if (img) { img.addEventListener('load', reveal); img.addEventListener('error', reveal); }
+    setTimeout(reveal, 2600); // poistka, keby sa load nespustil
+  })();
+
   /* ============ ČAROVNÁ PALIČKA — kurzor so zlatými iskrami ============ */
   (function () {
     var fine = window.matchMedia('(pointer: fine)').matches;
@@ -1386,7 +1426,7 @@
       errorEl.hidden = true;
       var original = btn.textContent;
       btn.disabled = true;
-      btn.textContent = 'Odosielam…';
+      btn.textContent = (document.documentElement.lang === 'en') ? 'Sending…' : 'Odosielam…';
 
       var data = {
         name: form.name.value,
@@ -1411,5 +1451,274 @@
           btn.textContent = original;
         });
     });
+  })();
+
+  /* ============ PREPÍNAČ JAZYKA SK / EN ============ */
+  (function () {
+    var DICT = {
+      // navigácia
+      "Investičná príležitosť": "Investment opportunity",
+      "Úvod": "Home",
+      "Lokalita": "Location",
+      "Investičný potenciál": "Investment potential",
+      "Potenciál": "Potential",
+      "Špecifikácie": "Specifications",
+      "Galéria": "Gallery",
+      "Technické špecifikácie": "Technical specifications",
+      "Kontakt": "Contact",
+      "Dohodnúť obhliadku": "Arrange a viewing",
+      "Otvoriť menu": "Open menu",
+      // hero
+      "Obec Pata · rýchle pripojenie na diaľnicu": "Pata village · fast motorway connection",
+      "Investičná príležitosť: objekt s": "Investment opportunity: a property with",
+      "neobmedzeným": "unlimited",
+      "potenciálom": "potential",
+      "Multifunkčný objekt s úžitkovou plochou": "A multifunctional building with a usable area of",
+      "s rýchlym pripojením na diaľničnú sieť. Priestor s potenciálom pre": "with a fast connection to the motorway network. A space with potential for",
+      "gastro, penzión či svadobný salón": "gastro, a guesthouse or a wedding venue",
+      "aj prestavbu na": "or conversion into",
+      "5 mezonetových bytov": "5 maisonette apartments",
+      "Prehliadať potenciál": "Explore the potential",
+      "Cena": "Price",
+      "Úžitková plocha": "Usable area",
+      "Pozemok": "Land",
+      "8 smerov": "8 uses",
+      "Potenciál využitia": "Use potential",
+      // lokalita + fakty
+      "Strategická lokalita": "Strategic location",
+      "Fakty, ktoré rozhodujú za vás": "Facts that decide for you",
+      "Rovinatý pozemok s vynikajúcou viditeľnosťou z rýchlostnej cesty a silnou spádovou oblasťou okolitých firiem a obcí.": "A flat plot with excellent visibility from the expressway and a strong catchment area of surrounding companies and towns.",
+      "Rovinatý, plne využiteľný pozemok s pohodlným prístupom aj pre zásobovanie.": "A flat, fully usable plot with convenient access, including for deliveries.",
+      "Dve plnohodnotné podlažia s flexibilnou dispozíciou pre viacero prevádzok.": "Two full floors with a flexible layout for a variety of uses.",
+      "Priamo pri zjazde": "Right by the exit",
+      "Frekventovaný ťah Trnava — Nitra. Skvelá viditeľnosť a nepretržitý tok potenciálnych klientov.": "The busy Trnava — Nitra route. Great visibility and a constant flow of potential customers.",
+      "Výnimočný pomer ceny a úžitkovej plochy — 331 € za m² v etablovanej lokalite.": "An exceptional price-to-area ratio — €331 per m² in an established location.",
+      // mapa
+      "Kde sa objekt nachádza": "Where the property is located",
+      "Kliknite na cieľ — mapa vykreslí trasu a dojazd autom.": "Click a destination — the map draws the route and driving time.",
+      "km autom": "km by car",
+      "minút": "minutes",
+      "Schematické znázornenie. Vzdialenosti a časy sú orientačné pre jazdu autom po R1.": "Schematic illustration. Distances and times are approximate for driving via the R1.",
+      "krajské mesto": "regional city",
+      "hlavné mesto": "capital city",
+      "Schematická mapa polohy objektu Pata medzi Trnavou a Nitrou pri rýchlostnej ceste R1": "Schematic map of Objekt Pata's location between Trnava and Nitra by the R1 expressway",
+      // potenciál — hlavička
+      "Osem smerov potenciálu. Jedna adresa.": "Eight directions of potential. One address.",
+      "Prízemie s reštauračnou halou a kuchyňou, poschodie s 5 izbami s vlastnými kúpeľňami, klimatizované podkrovie, parkovisko a predzáhradka s jazierkom. Vyberte si scenár — pri každom uvidíte vizualizáciu vytvorenú z reálnych fotografií objektu.": "A ground floor with a restaurant hall and kitchen, an upper floor with 5 en-suite rooms, an air-conditioned attic, a car park and a front garden with a pond. Pick a scenario — each one shows a visualization created from real photographs of the property.",
+      "Scenáre využitia": "Use scenarios",
+      // prepínač scenárov
+      "Penzión & Wellness": "Guesthouse & Wellness",
+      "Mezonetové byty": "Maisonette apartments",
+      "Svadobný salón": "Wedding venue",
+      "Škôlka / Fitness": "Kindergarten / Gym",
+      "Dom sociálnych služieb": "Social care home",
+      "Ubytovňa": "Workers' hostel",
+      // scenár A
+      "Gastro — otvorte prevádzku takmer okamžite": "Gastro — open your business almost immediately",
+      "Prízemie tvorila plne vybavená reštaurácia: hala s kamenným barom, vstupná hala so schodiskom, priestranná kuchyňa so skladovými priestormi, sociálne zariadenia a kotolňa. Pred budovou je veľké parkovisko a predzáhradka s jazierkom — pripravená scéna pre letnú terasu.": "The ground floor was a fully equipped restaurant: a hall with a stone bar, an entrance hall with a staircase, a spacious kitchen with storage, restrooms and a boiler room. In front of the building there is a large car park and a front garden with a pond — a ready-made setting for a summer terrace.",
+      "Reštauračná hala s kamenným barom + priestranná kuchyňa so skladmi": "A restaurant hall with a stone bar + a spacious kitchen with storage",
+      "Veľké parkovisko priamo pred budovou": "A large car park right in front of the building",
+      "Predzáhradka s jazierkom — ideálna pre letnú terasu": "A front garden with a pond — ideal for a summer terrace",
+      "Prízemie": "Ground floor",
+      "Reštaurácia so zázemím": "Restaurant with facilities",
+      "Hlavná hala s kamenným barom": "Main hall with a stone bar",
+      "Vizualizácia": "Visualization",
+      "Letná terasa pred objektom": "Summer terrace in front of the property",
+      // scenár B
+      "Penzión & Wellness — nonstop dopyt priamo z R1": "Guesthouse & Wellness — non-stop demand right off the R1",
+      "Prvé poschodie ponúka 5 samostatných izieb — každú s vlastnou kúpeľňou a WC — plus kanceláriu a otvorenú galériu s chodbou a výhľadom na prízemie. V podkroví je veľká klimatizovaná miestnosť s kúpeľňou a WC, ideálna ako apartmán alebo wellness zóna so saunou a relaxom.": "The first floor offers 5 separate rooms — each with its own bathroom and WC — plus an office and an open gallery with a corridor overlooking the ground floor. In the attic there is a large air-conditioned room with a bathroom and WC, ideal as an apartment or a wellness zone with a sauna and relaxation.",
+      "5 izieb na poschodí, každá s vlastnou kúpeľňou a WC": "5 rooms upstairs, each with its own bathroom and WC",
+      "Priestor pre wellness so saunou — klimatizované podkrovie alebo prízemné zázemie": "Room for a wellness area with a sauna — the air-conditioned attic or ground-floor facilities",
+      "Parkovisko pred budovou a reštauračné prízemie — všetko pod jednou strechou": "A car park in front and a restaurant ground floor — all under one roof",
+      "Penzión + wellness": "Guesthouse + wellness",
+      "Ubytovanie a relax": "Accommodation and relaxation",
+      "Hosťovská izba v podkroví": "Guest room in the attic",
+      "Recepcia penziónu": "Guesthouse reception",
+      // scenár C
+      "Mezonetové byty — rezidenčný development": "Maisonette apartments — residential development",
+      "Dve podlažia s podkrovím a otvorenou galériou dávajú priestor na prestavbu na 5 štýlových mezonetových bytov. V zadnej časti pozemku sú navyše 2 rozostavané dvojpodlažné jednotky — pripravené rozšírenie developmentu.": "Two floors with an attic and an open gallery give room to convert the building into 5 stylish maisonette apartments. At the rear of the plot there are also 2 unfinished two-storey units — a ready-made extension of the development.",
+      "Izby na poschodí už dnes s vlastnými kúpeľňami — jednoduchšia prestavba": "Rooms upstairs already have their own bathrooms — an easier conversion",
+      "2 rozostavané dvojpodlažné jednotky v zadnej časti pozemku": "2 unfinished two-storey units at the rear of the plot",
+      "Parkovisko pre rezidentov priamo pred budovou": "Resident parking right in front of the building",
+      "Mezonety + jednotky vzadu": "Maisonettes + units at the rear",
+      "Objekt prestavaný na byty": "The property converted into apartments",
+      "Podkrovná spálňa": "Attic bedroom",
+      // scenár D
+      "Svadobný salón & Eventy — priestor, ktorý predáva emóciu": "Wedding venue & Events — a space that sells emotion",
+      "Vstupná hala so schodiskom a otvorenou galériou vytvára prirodzene reprezentatívny nástup, predzáhradka s jazierkom je ako stvorená na obrady a fotenie. Dojazd do 30 minút z dvoch krajských miest znamená široký okruh klientely.": "The entrance hall with its staircase and open gallery makes a naturally impressive arrival, and the front garden with a pond is made for ceremonies and photos. A drive of under 30 minutes from two regional cities means a wide pool of clients.",
+      "Hala so schodiskom a otvorenou galériou — „wow“ efekt pri vstupe": "A hall with a staircase and open gallery — a 'wow' effect on arrival",
+      "Predzáhradka s jazierkom na obrady a fotenie + parkovisko pre hostí": "A front garden with a pond for ceremonies and photos + guest parking",
+      "5 izieb s kúpeľňami na poschodí — ubytovanie svadobčanov": "5 en-suite rooms upstairs — accommodation for wedding guests",
+      "2 v 1": "2 in 1",
+      "Sála + ubytovanie": "Hall + accommodation",
+      "Svadobný salón so schodiskom": "Wedding hall with a staircase",
+      "Hostina v hale s balkónmi": "Reception in the hall with balconies",
+      // scenár E
+      "Showroom & Obchodný priestor — vitrína pri R1": "Showroom & Retail space — a shop window by the R1",
+      "Tisíce áut denne na ťahu Trnava — Nitra robia z objektu prirodzený showroom: nábytok, kuchyne, technika. Reštauračná hala na prízemí unesie expozíciu, kuchyňa a sklady poslúžia ako technické zázemie a na poschodí je kancelária s 5 samostatnými miestnosťami pre tím.": "Thousands of cars a day on the Trnava — Nitra route make the property a natural showroom: furniture, kitchens, appliances. The restaurant hall on the ground floor can hold the display, the kitchen and storage serve as back-of-house, and upstairs there is an office with 5 separate rooms for the team.",
+      "Veľké parkovisko pred budovou pre zákazníkov aj zásobovanie": "A large car park in front for customers and deliveries",
+      "Skladové priestory priamo na prízemí": "Storage space right on the ground floor",
+      "Kancelária a samostatné miestnosti na poschodí": "An office and separate rooms upstairs",
+      "Expozícia + zázemie": "Display + facilities",
+      "Expozícia na prízemí": "Display on the ground floor",
+      "Fasáda s presklením": "Facade with glazing",
+      // scenár F
+      "Škôlka alebo Fitness — služby, ktoré v okolí chýbajú": "Kindergarten or Gym — services the area is missing",
+      "Rastúce obce v okolí Serede potrebujú škôlky, fitness centrá aj ambulancie. Veľké miestnosti na prízemí, samostatné miestnosti s vlastnými kúpeľňami na poschodí a rovinatý pozemok s predzáhradkou tomu vychádzajú v ústrety.": "The growing towns around Sereď need kindergartens, gyms and clinics. Large rooms on the ground floor, separate en-suite rooms upstairs and a flat plot with a front garden all lend themselves to it.",
+      "Veľké svetlé miestnosti s oknami do zelene": "Large bright rooms with windows onto greenery",
+      "Pozemok s priestorom pre ihrisko či vonkajšiu fit zónu + parkovisko": "A plot with room for a playground or outdoor fitness zone + parking",
+      "Podlahové kúrenie — komfort pre deti aj športovcov": "Underfloor heating — comfort for children and athletes",
+      "2 smery": "2 options",
+      "Vzdelávanie / šport": "Education / sport",
+      "Herňa škôlky na prízemí": "Kindergarten playroom on the ground floor",
+      "Fitness zóna": "Gym zone",
+      // scenár G
+      "Dom sociálnych služieb — služba, po ktorej dopyt neustále rastie": "Social care home — a service in ever-growing demand",
+      "Izby s vlastnými kúpeľňami a WC na poschodí ponúkajú klientom súkromie a komfort, spoločenské priestory na prízemí a predzáhradka s jazierkom zas pokojné prostredie. Dispozíciu možno rozdeliť na viac izieb podľa potreby. Rodiny ocenia dojazd z Trnavy aj Nitry do polhodiny.": "En-suite rooms upstairs give clients privacy and comfort, while the common areas on the ground floor and the front garden with a pond provide a calm setting. The layout can be divided into more rooms as needed. Families will value the under-half-hour drive from both Trnava and Nitra.",
+      "Izby s vlastnou kúpeľňou a WC + veľká podkrovná miestnosť": "En-suite rooms + a large attic room",
+      "Predzáhradka s jazierkom — pokojný oddych v zeleni": "A front garden with a pond — peaceful rest in greenery",
+      "Kapacity zariadení pre seniorov v regióne dlhodobo nestačia dopytu": "Senior-care capacity in the region has long fallen short of demand",
+      "Rastúci dopyt": "Growing demand",
+      "Starnúca demografia": "An ageing population",
+      "Spoločenská miestnosť": "Common room",
+      "Izba pre seniora": "Resident's room",
+      // scenár H
+      "Ubytovňa — stabilný výnos z dlhodobých nájmov": "Workers' hostel — stable income from long-term rentals",
+      "Priemyselné zóny v okolí Serede, Galanty a Nitry vytvárajú stály dopyt po ubytovaní pracovníkov. Izby s vlastnými kúpeľňami a WC na poschodí plus veľká klimatizovaná miestnosť v podkroví umožňujú spustiť prevádzku takmer okamžite — dispozíciu možno rozdeliť na viac lôžok.": "The industrial zones around Sereď, Galanta and Nitra create steady demand for worker accommodation. En-suite rooms upstairs plus a large air-conditioned room in the attic let you start operating almost immediately — the layout can be divided into more beds.",
+      "Každá izba s vlastnou kúpeľňou a WC — vyšší štandard ubytovne": "Every room en-suite — a higher-standard hostel",
+      "Priestranná kuchyňa so skladmi na prízemí ako spoločné zázemie": "A spacious kitchen with storage on the ground floor as shared facilities",
+      "Veľké parkovisko pre autá aj dodávky priamo pred budovou": "A large car park for cars and vans right in front",
+      "Dlhodobé nájmy": "Long-term rentals",
+      "Zmluvy s firmami": "Corporate contracts",
+      "Dvojlôžková izba v podkroví": "Twin room in the attic",
+      "Spoločná kuchyňa a jedáleň": "Shared kitchen and dining area",
+      "Vizualizácie sú ilustračné — vytvorené na základe reálnych fotografií objektu. Nezobrazujú skutočný stav nehnuteľnosti.": "The visualizations are illustrative — created from real photographs of the property. They do not depict its actual condition.",
+      // galéria
+      "Skutočný stav objektu": "Actual condition of the property",
+      "Letecké zábery aj aktuálne fotografie interiéru. Kliknutím na fotografiu ju zobrazíte v plnej veľkosti.": "Aerial shots and current interior photos. Click a photo to view it full size.",
+      "Objekt a pozemok": "Property and land",
+      "Predný vchod": "Front entrance",
+      "Hala s barom": "Hall with a bar",
+      "Hala s balkónmi": "Hall with balconies",
+      "Rozostavané krídlo": "Unfinished wing",
+      "Pohľad z dvora": "View from the yard",
+      "Schodisko a galéria": "Staircase and gallery",
+      "Vchod": "Entrance",
+      "Kuchyňa": "Kitchen",
+      "Predsieň": "Hallway",
+      "Zadná miestnosť": "Rear room",
+      "Náhľad fotografie": "Photo preview",
+      "Predchádzajúca": "Previous",
+      "Ďalšia": "Next",
+      "Zavrieť": "Close",
+      // technické parametre
+      "Parametre pre investorov": "Parameters for investors",
+      "Kvalitná stavebná podstata a kompletné siete — objekt je pripravený na okamžitú prevádzku aj prestavbu.": "Solid construction and complete utilities — the property is ready for immediate operation or conversion.",
+      "Konštrukcia": "Construction",
+      "Nosné murivo": "Load-bearing walls",
+      "Pórobetón": "Aerated concrete",
+      "Priečky": "Partitions",
+      "Tehlové": "Brick",
+      "Základy": "Foundations",
+      "Betónové": "Concrete",
+      "Podlažia": "Floors",
+      "2 + podkrovie": "2 + attic",
+      "Kúrenie a siete": "Heating & utilities",
+      "Vykurovanie": "Heating",
+      "Podlahové + radiátory": "Underfloor + radiators",
+      "Klimatizácia": "Air conditioning",
+      "Áno (podkrovie)": "Yes (attic)",
+      "Elektrina & plyn": "Electricity & gas",
+      "Zavedené": "Connected",
+      "Voda": "Water",
+      "Vlastná studňa": "Own well",
+      "Teplá voda": "Hot water",
+      "Elektrický bojler": "Electric boiler",
+      "Odpad": "Sewage",
+      "Žumpa 16 m³": "Cesspit 16 m³",
+      "Okná a strecha": "Windows & roof",
+      "Okná": "Windows",
+      "Drevené eurookná": "Wooden Euro windows",
+      "Tienenie": "Shading",
+      "Žalúzie": "Blinds",
+      "Krov": "Roof truss",
+      "Sedlový, drevený": "Gabled, timber",
+      // kontakt
+      "Ďalší krok": "Next step",
+      "Máte záujem? Dohodnime ďalší postup": "Interested? Let's arrange the next step",
+      "Zanechajte nám e-mail alebo nás kontaktujte — ozveme sa vám a spoločne dohodneme ďalší krok: obhliadku objektu, konzultáciu o možnostiach využitia alebo doplnenie informácií.": "Leave us your email or get in touch — we'll reply and together arrange the next step: a viewing of the property, a consultation on possible uses, or more information.",
+      "Osobná obhliadka v termíne podľa vás": "A personal viewing at a time that suits you",
+      "Konzultácia o možnostiach využitia objektu": "A consultation on how the property can be used",
+      "Odpovedáme spravidla do 24 hodín": "We usually reply within 24 hours",
+      "Zavolajte nám": "Call us",
+      "Napíšte nám": "Email us",
+      // formulár
+      "Nezáväzný záujem": "No-obligation enquiry",
+      "Stačí e-mail — ozveme sa vám späť. Vaše údaje nezdieľame s tretími stranami.": "Just your email — we'll get back to you. We don't share your data with third parties.",
+      "Meno a priezvisko": "Full name",
+      "E-mail": "Email",
+      "Mám záujem o": "I'm interested in",
+      "Ing. Peter Novák": "John Smith",
+      "peter@firma.sk": "john@company.com",
+      "Obhliadku objektu": "A viewing of the property",
+      "Konzultáciu o možnostiach využitia": "A consultation on possible uses",
+      "Viac informácií o objekte": "More information about the property",
+      "Odoslať nezáväzný záujem": "Send enquiry",
+      "Správu sa nepodarilo odoslať. Skúste to znova alebo nám napíšte na office@aksalcrown.com.": "The message could not be sent. Please try again or email us at office@aksalcrown.com.",
+      "Celú ponuku zastrešuje firma Aksal reality s.r.o. Odoslaním súhlasíte so spracovaním údajov na účely komunikácie o tejto ponuke.": "The entire offer is handled by Aksal reality s.r.o. By submitting, you consent to your data being processed for communication about this offer.",
+      "Ďakujeme za záujem": "Thank you for your interest",
+      "Vaša správa bola prijatá. Ozveme sa vám čo najskôr a dohodneme ďalší postup — obhliadku alebo konzultáciu.": "Your message has been received. We'll be in touch soon to arrange the next step — a viewing or a consultation.",
+      // footer
+      "Investičná príležitosť · Objekt Pata": "Investment opportunity · Objekt Pata",
+      "© 2026 Objekt Pata — multifunkčná nehnuteľnosť pri R1. Všetky práva vyhradené.": "© 2026 Objekt Pata — a multifunctional property by the R1. All rights reserved.",
+      "Cena:": "Price:",
+      "· Pozemok 1 674 m² · Úžitková plocha 1 056 m²": "· Land 1 674 m² · Usable area 1 056 m²",
+      // hlavička dokumentu
+      "Multifunkčný objekt Pata — investičná príležitosť | 1056 m²": "Multifunctional property Pata — investment opportunity | 1056 m²",
+      "Multifunkčný objekt 1056 m² na pozemku 1674 m² s rýchlym pripojením na diaľničnú sieť (Pata). Gastro, penzión, byty, svadobný salón, showroom či fitness. 350 000 €.": "Multifunctional property 1056 m² on a 1674 m² plot with a fast motorway connection (Pata). Gastro, guesthouse, apartments, wedding venue, showroom or gym. €350,000."
+    };
+
+    var REV = {};
+    Object.keys(DICT).forEach(function (k) { if (REV[DICT[k]] === undefined) REV[DICT[k]] = k; });
+    var collapse = function (s) { return s.replace(/\s+/g, ' ').trim(); };
+    var current = 'sk';
+    var btn = document.getElementById('langToggle');
+
+    function walk(node, fn) {
+      for (var n = node.firstChild; n; n = n.nextSibling) {
+        if (n.nodeType === 3) fn(n);
+        else if (n.nodeType === 1 && !/^(script|style)$/i.test(n.tagName)) walk(n, fn);
+      }
+    }
+
+    function apply(lang) {
+      if (lang === current) return;
+      var map = lang === 'en' ? DICT : REV;
+      walk(document.body, function (t) {
+        var raw = t.nodeValue;
+        if (!raw || !raw.trim()) return;
+        var m = raw.match(/^(\s*)([\s\S]*?)(\s*)$/);
+        var key = collapse(m[2]);
+        if (map[key] !== undefined) t.nodeValue = m[1] + map[key] + m[3];
+      });
+      ['placeholder', 'aria-label'].forEach(function (attr) {
+        document.querySelectorAll('[' + attr + ']').forEach(function (el) {
+          var k = collapse(el.getAttribute(attr) || '');
+          if (map[k] !== undefined) el.setAttribute(attr, map[k]);
+        });
+      });
+      var tt = collapse(document.title);
+      if (map[tt] !== undefined) document.title = map[tt];
+      var md = document.querySelector('meta[name="description"]');
+      if (md) { var mk = collapse(md.getAttribute('content')); if (map[mk] !== undefined) md.setAttribute('content', map[mk]); }
+      document.documentElement.lang = lang;
+      current = lang;
+      btn.textContent = lang === 'en' ? 'SK' : 'EN';
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    btn.addEventListener('click', function () { apply(current === 'en' ? 'sk' : 'en'); });
+
+    try { if (localStorage.getItem('lang') === 'en') apply('en'); } catch (e) {}
   })();
 </script>
